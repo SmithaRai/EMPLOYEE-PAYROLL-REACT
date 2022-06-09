@@ -1,12 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      Hello from Bridgelabz
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super();
+    this.state={
+      title:'hello from Bridgelabz'
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.title}</h1>
+      </div>
+    );
+  }
 }
+
 
 export default App;
