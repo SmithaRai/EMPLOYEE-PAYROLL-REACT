@@ -2,20 +2,33 @@
   text-align: center;
 }
 
-.App-logo {
+.App-logos {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .App-logos {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+img {
+  display: block;
+  margin: 0 auto;
+  width: 30%;
 }
 
 h1 {
   text-align: center;
   font-size: xx-large;
+  color: blue;
+}
+input{
+  align-content: center;
+}
+
+.main-container{
+  background:  orangered;
 }
 
 .App-header {
@@ -27,6 +40,13 @@ h1 {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left:  20px blue ;
 }
 
 .App-link {

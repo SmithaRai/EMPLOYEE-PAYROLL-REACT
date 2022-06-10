@@ -1,13 +1,15 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from 'react';
+import logos from './assets/logo.png';
 
 class App extends React.Component {
   url = 'https://www.bridgelabz.com/'
   constructor(){
     super()
-    this.State = {
-      userName :' '
+    this.state = {
+      userName :'',
+      nameError:''
     }
   } 
 
@@ -18,22 +20,54 @@ class App extends React.Component {
   }
   onNameChange = (event) => {
     console.log("value is ", event.target.value);
+    const nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
     //set the title using setState method
     this.setState({ userName : event.target.value } )
+    if (nameRegex.test(event.target.value)) {
+      this.setState({ nameError: '' })
+    } else {
+      this.setState({ nameError: 'Name is Incorrect' })
+    }
   }
   render() {
     return (
       <>
-      <div>
-        <h1> hello {this.State.userName }from Bridgelabz </h1>
-        <img src={logo} onClick = {this.onClick}
-         alt = "The Bridgelabz logo: a bridge to employment through lab works"/>
-      </div>
-      <div>
-        <input onChange = {this.onNameChange} />
-      </div>
-      </>
-    );
-  }
+          <div className="container">
+            <div className="main-container">
+              <div className="header">
+            
+                <h1>Hello {this.state.userName} from Bridgelabz</h1>
+              </div>
+              <div className='body'>
+                <img src={logos} onClick={this.onClick}
+                  alt="This Bridgelabz logo: a Bridge to Employment through lab works" />
+                <input onChange={this.onNameChange} />
+              </div>
+              <span className="error-output">{this.state.nameError}</span>
+              <div>
+                <p>At BridgeLabz, we're a community of </p>
+                <ul>
+                  <li>Technoligist</li>
+                  <li>Thinkers</li>
+                  <li>Builders</li>
+                </ul>
+                <p>
+                  Working together to keep Tech employability of enginners alive and
+                  accesible so tech comanies worldwide
+                  get contributors and creators for technology solutions.
+                  We believe this act of human collaboration acrosss an employability
+                  platform is essential to individual growth and our collective future
+                </p>
+                <p>
+                  To know about us , visit <a href="https://www.bridgelabz.com/"> BridgeLabz </a>
+                  to learn even more about out mission i.e. <strong>Employability to all</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+    </>
+  );
 }
+}
+
 export default App;
