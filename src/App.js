@@ -1,73 +1,90 @@
-
-import './App.css';
-import React from 'react';
-import logos from './assets/logo.png';
+import logo from "./assets/logo.png";
+import React from "react";
+import "./App.css";
+import Home from "./Component/Home";
+import About from "./Component/About";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 class App extends React.Component {
-  url = 'https://www.bridgelabz.com/'
-  constructor(){
-    super()
+  url = "http://www.bridgelabz.com/";
+  constructor() {
+    super();
     this.state = {
-      userName :'',
-      nameError:''
-    }
-  } 
+      userName: "",
+      nameError: "",
+    };
+  }
 
-  //onClick function
+  //onClick Function
   onClick = ($event) => {
-    console.log("save button is clicked!",$event);
-    window.open( this.url ,"_blank");
-  }
+    console.log("Save button is clicked !", $event);
+    window.open(this.url, "_blank");
+  };
   onNameChange = (event) => {
-    console.log("value is ", event.target.value);
-    const nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
-    //set the title using setState method
-    this.setState({ userName : event.target.value } )
+    console.log("value is", event.target.value);
+    const nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+    this.setState({ userName: event.target.value });
     if (nameRegex.test(event.target.value)) {
-      this.setState({ nameError: '' })
-    } else {
-      this.setState({ nameError: 'Name is Incorrect' })
-    }
-  }
+      this.setState({ nameError: "" });
+    } else this.setState({ nameError: "Incorrect name" });
+  };
   render() {
     return (
       <>
-          <div className="container">
-            <div className="main-container">
-              <div className="header">
-            
-                <h1>Hello {this.state.userName} from Bridgelabz</h1>
-              </div>
-              <div className='body'>
-                <img src={logos} onClick={this.onClick}
-                  alt="This Bridgelabz logo: a Bridge to Employment through lab works" />
-                <input onChange={this.onNameChange} />
-              </div>
-              <span className="error-output">{this.state.nameError}</span>
-              <div>
-                <p>At BridgeLabz, we're a community of </p>
-                <ul>
-                  <li>Technoligist</li>
-                  <li>Thinkers</li>
-                  <li>Builders</li>
-                </ul>
-                <p>
-                  Working together to keep Tech employability of enginners alive and
-                  accesible so tech comanies worldwide
-                  get contributors and creators for technology solutions.
-                  We believe this act of human collaboration acrosss an employability
-                  platform is essential to individual growth and our collective future
-                </p>
-                <p>
-                  To know about us , visit <a href="https://www.bridgelabz.com/"> BridgeLabz </a>
-                  to learn even more about out mission i.e. <strong>Employability to all</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-    </>
-  );
-}
-}
+        <div className="App">
+          <h1>Hello {this.state.userName} From Bridgelabz</h1>
+          <img
+            src={logo}
+            onClick={this.onClick}
+            className="App-logo"
+            alt="logo"
+          />
+        </div>
+        <div className="App">
+          <br />
+          <input onChange={this.onNameChange} />
+          <span className="error-output">{this.state.nameError}</span>
+        </div>
+        <p>At Bridgelabz we are a Community of</p>
+        <ul>
+          <li>Technologists</li>
+          <li>Thinkers</li>
+          <li>Builders</li>
+        </ul>
+        <p>
+          Working together to keep the employability of Engineers alive and
+          accessible, so Tech Companies worldwide can get contributors and
+          creators for technology Solutions. We belive this act of human
+          collaboration across an employability platfor is essential to
+          individual growth and our collevtive future.
+        </p>
+        <p>
+          To know more about us, visit{" "}
+          <a href="https://www.bridgelabz.com/">Bridgelabz</a> to learn even
+          more about out mission
+        </p>
+        <p>
+          <strong>i.e Employability to all</strong>
+        </p>
+        <ul>
+          <li>
+            <a href="/home">Home</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+        </ul>
 
-export default App;
+        <BrowserRouter>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </BrowserRouter>
+      </>
+    );
+  }
+}
+  export default App;
+
+
